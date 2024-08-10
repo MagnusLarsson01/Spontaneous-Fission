@@ -1,0 +1,18 @@
+[project]
+name = "Spontaneous Fission"
+version = "0.0.1"
+authors = [
+  { name="Magnus Larsson", email="magnus.larsson01@gmail.com" },
+]
+description = "A python package for calculation of spontaneous fission rates for compound materials"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/pypa/sampleproject"
+Issues = "https://github.com/pypa/sampleproject/issues"
