@@ -1,5 +1,8 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 [project]
-name = "Spontaneous Fission"
+name = "SpontaneousFission"
 version = "0.0.1"
 authors = [
   { name="Magnus Larsson", email="magnus.larsson01@gmail.com" },
@@ -14,5 +17,5 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/pypa/sampleproject"
-Issues = "https://github.com/pypa/sampleproject/issues"
+Homepage = "https://github.com/MagnusLarsson01/Spontaneous-Fission"
+Issues = "https://github.com/MagnusLarsson01/Spontaneous-Fission/issues"
