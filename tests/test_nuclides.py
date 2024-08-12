@@ -1,6 +1,6 @@
 import unittest
-
-from FissionMaterials.nuclide import *
+import math
+from SpontaneousFission import *
 
 class TestNuclides(unittest.TestCase):
     def setup(self):
@@ -17,6 +17,8 @@ class TestNuclides(unittest.TestCase):
     def test_nuclide_notation(self):
         nuclide = Nuclide('U', 'U235', 92, 235, 235.044, 9.8E18)
         self.assertTrue(nuclide.get_nuclide_notation == '92235')
+
+    
 
 if __name__=="__main__":
     unittest.main()
