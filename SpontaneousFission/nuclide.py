@@ -39,7 +39,7 @@ class Nuclide():
     sf_half_life : float
         Half life based on spontaneous fission
     half_life_unit : float
-        Unit for the half life y (year, default), d (days)
+        Unit for the half life y (year, default), d (days), s (seconds)
     density : float
         Density of the pure isotope g/cm-3
 
@@ -58,10 +58,42 @@ class Nuclide():
         return str(self.Z*1000 + self.A)
     
     def get_lambda(self):
+        """
+        The function calculates the decay constant lambda.
+        
+        Returns
+        -------
+        float
+            the decay constant lambda
+        """
         if self.half_life_unit == 'y':
             return  math.log(2)/(self.sf_half_life*365*24*3600) # s
+        elif self.half_life_unit == 'd':
+            return  math.log(2)/(self.sf_half_life*24*3600) # s
+        elif self.half_life_unit == 's':
+            return  math.log(2)/(self.sf_half_life) # s
 
     def get_decay_rate(self, mass, unit='g'):
+        """
+        The function calculates the decay rate for the nuclide.
+        
+        Parameters
+        ----------
+        mass : float
+            the mass of the nuclide
+        unit : str
+            the unit for the mass with g as default. Alternatives are mg, kg.
+
+        Returns
+        -------
+        float
+            the decay rate for the nuclide
+        """
         if unit=='g':
             N = mass/self.molar_mass*6.022E23
-            return self.get_lambda()*N
+        elif unit=='kg':
+            N = mass*1000/self.molar_mass*6.022E23
+        if unit=='mg':
+            N = mass*1E-3/self.molar_mass*6.022E23
+
+        return self.get_lambda()*N

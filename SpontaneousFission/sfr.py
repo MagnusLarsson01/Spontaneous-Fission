@@ -1,5 +1,8 @@
-#from material import Material
+"""
+module for spontaneous fission result 
 
+Magnus Larsson 2024
+"""
 class SpontaneousFissionResult():
     """
     A class used to represent a the result from spontaneous fission analysis of a material.
