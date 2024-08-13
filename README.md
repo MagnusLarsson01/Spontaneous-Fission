@@ -6,7 +6,7 @@ Installation
 ------------
 
 ```bash
-   pip install https://https://github.com/MagnusLarsson01/Spontaneous-Fission/main
+   pip install https://github.com/MagnusLarsson01/Spontaneous-Fission/main
 ```
 
 Uninstall it with the command
