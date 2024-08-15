@@ -58,7 +58,7 @@ class SpontaneousFissionResult():
         if self.error:
             return f"Sponteneous fission rate failed: {self.error_message}"
         else:
-            message = f"density={self.density}, volume={self.volume}\nList of nuclides, and atomic densities (in {self.density_units})\n"
+            message = f"density={self.density}, volume={self.volume}\nList of nuclides, and atomic densities (in {self.density_unit})\n"
             for nuclide, atomic_density in self.concentrations.items():
                 message += f"{nuclide.get_nuclide_notation()}\t{atomic_density}\n"   
             message += f"\nSponteneous fission rate: {self.spontaneous_fission_rate} {self.unit}"
