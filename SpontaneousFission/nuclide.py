@@ -1,3 +1,8 @@
+"""
+module for spontaneous fission nuclides 
+
+Magnus Larsson 2024
+"""
 import math
 
 class Nuclide():

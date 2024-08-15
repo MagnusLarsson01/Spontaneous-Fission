@@ -99,7 +99,10 @@ class Material():
         conc = dict()
         for nuclide, fraction in self.material_data.items():
             if self.amount_type == 'fraction':
-                conc[nuclide] = (fraction*nuclide.A/self.total_fraction_times_A)*self.density*self.volume*6.022E23/(nuclide.molar_mass*1E24)
+                if self.volume in None:                    
+                    conc[nuclide] = (fraction*nuclide.A/self.total_fraction_times_A)*self.density*6.022E23/(nuclide.molar_mass*1E24)
+                else:
+                    conc[nuclide] = (fraction*nuclide.A/self.total_fraction_times_A)*self.density*self.volume*6.022E23/(nuclide.molar_mass*1E24)
             else:
                 conc[nuclide] = fraction
         return conc
@@ -118,7 +121,10 @@ class Material():
                 self.setDensity()
         fission_rate, unit = self.calculate_fission_rate()
         nuclide_concentrations = self.calculate_nuclide_concentrations()
-        sfr = SpontaneousFissionResult(nuclide_concentrations, self.density, self.volume, fission_rate, unit)
+        if self.volume is None:
+            sfr = SpontaneousFissionResult(nuclide_concentrations, self.density, self.volume, fission_rate, unit, 'barn-1cm-1cm-3')
+        else:
+            sfr = SpontaneousFissionResult(nuclide_concentrations, self.density, self.volume, fission_rate, unit)           
         return sfr
 
     def __repr__(self):
@@ -126,11 +132,11 @@ class Material():
     
 if __name__=="__main__":
     # 1g of U235 should be 0.00563 fissions per Kg per second
-    # uo2 = Material()
-    # uo2.add_nuclide('U235', 0.04)
-    # uo2.add_nuclide('U238', 0.96)
-    # uo2.add_nuclide('O16', 2.0)
-    # uo2.set_density('g/cm3', 10.5)
+    uo2 = Material()
+    uo2.add_nuclide('U235', 0.04)
+    uo2.add_nuclide('U238', 0.96)
+    uo2.add_nuclide('O16', 2.0)
+    uo2.set_density('g/cm3', 10.5)
     # uo2.set_volume('cm3', 100)
 
     # 1g of U235 should be 0.00563 fissions per Kg per second
@@ -152,26 +158,26 @@ if __name__=="__main__":
     # uo2.set_volume('cm3', 1.0)
 
     # 1kg of Pu239 should be 0.00563 fissions per Kg per second
-    uo2 = Material(amount_type='barn-1cm-1')
-    uo2.add_nuclide('8016', 4.76318709979466E-02)
-    uo2.add_nuclide('92232', 7.06104652673138E-15)
-    uo2.add_nuclide('92233', 2.35088603140821E-11)
-    uo2.add_nuclide('92234', 3.04159895434244E-08)
-    uo2.add_nuclide('92235', 4.49538785711297E-04)
-    uo2.add_nuclide('92236', 6.89750759080931E-05)
-    uo2.add_nuclide('92238', 2.26704289203308E-02)
-    uo2.add_nuclide('93237', 4.55266877773770E-06)
-    uo2.add_nuclide('94236', 1.89748994915674E-14)
-    uo2.add_nuclide('94238', 7.46428645473517E-07)
-    uo2.add_nuclide('94239', 1.24397804220399E-04)
-    uo2.add_nuclide('94240', 2.91722130669398E-05)
-    uo2.add_nuclide('94241', 1.62079695976725E-05)
-    uo2.add_nuclide('94242', 2.48409460618007E-06)
-    uo2.add_nuclide('95241', 3.48993557415652E-07)
-    uo2.add_nuclide('96242', 6.91986026960431E-08)
-    uo2.add_nuclide('96244', 3.34182840687710E-08)
-    uo2.add_nuclide('96246', 3.15376964764952E-11)
-    uo2.set_volume('cm3', 1.0)
+    # uo2 = Material(amount_type='barn-1cm-1')
+    # uo2.add_nuclide('8016', 4.76318709979466E-02)
+    # uo2.add_nuclide('92232', 7.06104652673138E-15)
+    # uo2.add_nuclide('92233', 2.35088603140821E-11)
+    # uo2.add_nuclide('92234', 3.04159895434244E-08)
+    # uo2.add_nuclide('92235', 4.49538785711297E-04)
+    # uo2.add_nuclide('92236', 6.89750759080931E-05)
+    # uo2.add_nuclide('92238', 2.26704289203308E-02)
+    # uo2.add_nuclide('93237', 4.55266877773770E-06)
+    # uo2.add_nuclide('94236', 1.89748994915674E-14)
+    # uo2.add_nuclide('94238', 7.46428645473517E-07)
+    # uo2.add_nuclide('94239', 1.24397804220399E-04)
+    # uo2.add_nuclide('94240', 2.91722130669398E-05)
+    # uo2.add_nuclide('94241', 1.62079695976725E-05)
+    # uo2.add_nuclide('94242', 2.48409460618007E-06)
+    # uo2.add_nuclide('95241', 3.48993557415652E-07)
+    # uo2.add_nuclide('96242', 6.91986026960431E-08)
+    # uo2.add_nuclide('96244', 3.34182840687710E-08)
+    # uo2.add_nuclide('96246', 3.15376964764952E-11)
+    # uo2.set_volume('cm3', 1.0)
 
     sfr = uo2.getSFR()
     print(sfr)

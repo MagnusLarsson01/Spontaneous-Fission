@@ -6,7 +6,7 @@ Installation
 ------------
 
 ```bash
-   pip install https://github.com/MagnusLarsson01/Spontaneous-Fission/main
+   pip install git+https://github.com/MagnusLarsson01/Spontaneous-Fission@main
 ```
 
 Uninstall it with the command
@@ -22,7 +22,9 @@ Dependencies
 Getting started
 ---------------
 
-The basic functionality and the theoretical background is summarized at the [documentation site](https://ezsolti.github.io/tkgeom/quickstart.html)
+The theoretical background is summarized at the [documentation site](https://en.wikipedia.org/wiki/Spontaneous_fission)
+
+
 
 Examples
 --------
