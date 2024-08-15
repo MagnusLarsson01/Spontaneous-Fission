@@ -122,6 +122,7 @@ class Material():
         fission_rate, unit = self.calculate_fission_rate()
         nuclide_concentrations = self.calculate_nuclide_concentrations()
         if self.volume is None:
+            fission_rate *= self.density
             sfr = SpontaneousFissionResult(nuclide_concentrations, self.density, self.volume, fission_rate, unit, density_unit='barn-1cm-1cm-3')
         else:
             sfr = SpontaneousFissionResult(nuclide_concentrations, self.density, self.volume, fission_rate, unit)           
