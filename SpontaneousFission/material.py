@@ -88,7 +88,7 @@ class Material():
 
         # print(fission_rate*self.density*self.volume)
         if self.volume is None:
-            return fission_rate, 'fission/g/second'
+            return fission_rate, 'fission/cm3/second'
         else:
             if self.amount_type == 'fraction':
                 return fission_rate*self.density*self.volume, 'fission/second'
