@@ -99,7 +99,7 @@ class Material():
         conc = dict()
         for nuclide, fraction in self.material_data.items():
             if self.amount_type == 'fraction':
-                if self.volume in None:                    
+                if self.volume is None:                    
                     conc[nuclide] = (fraction*nuclide.A/self.total_fraction_times_A)*self.density*6.022E23/(nuclide.molar_mass*1E24)
                 else:
                     conc[nuclide] = (fraction*nuclide.A/self.total_fraction_times_A)*self.density*self.volume*6.022E23/(nuclide.molar_mass*1E24)
